@@ -19,7 +19,7 @@ jobs:
         run: npm install -g pnpm
 
       - name: Set up pnpm global bin directory
-        run: pnpm setup
+        run: SHELL=/bin/bash pnpm setup
 
       - name: Install dependencies
         run: pnpm install
