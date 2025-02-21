@@ -2,13 +2,16 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   /* config options here */
+  experimental: {
+    reactCompiler: true,
+  },
   images: {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "via.placeholder.com",
+        hostname: "serebii.net",
         port: "",
-        pathname: "/**",
+        pathname: "/tcgpocket/**",
       },
       {
         protocol: "https",
