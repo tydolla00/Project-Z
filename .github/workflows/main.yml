@@ -1,34 +1,25 @@
 name: Vercel Build
 
-on:
-  push:
-    branches:
-      - main
-  pull_request:
+on: [push]
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18'
+    - name: Install dependencies
+      run: pnpm install
 
-      - name: Install Vercel CLI
-        run: npm install -g vercel
+    - name: Install Vercel CLI
+      run: pnpm install -g vercel
 
-      - name: Pull Vercel Environment Variables
-        env:
-          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-        run: vercel pull --yes --token ${{ secrets.VERCEL_TOKEN }}
+    - name: Vercel Pull
+      run: vercel pull --yes --token ${{ secrets.VERCEL_TOKEN }}
 
-      - name: Build with Vercel
-        env:
-          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
-        run: vercel build --token ${{ secrets.VERCEL_TOKEN }} --prod
+    - name: Vercel Build
+      run: vercel build --token ${{ secrets.VERCEL_TOKEN }} --prod
+      env:
+        DATABASE_URL: ${{ secrets.DATABASE_URL }}
