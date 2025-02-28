@@ -108,7 +108,7 @@ def parse_table(html):
             
     return json.dumps(cards, indent=4)
 
-def get_Input(input_path=None):
+def get_Input(input_path=None, output_path=None):
     # Get the directory where the script is located
     script_dir = os.path.dirname(os.path.abspath(__file__))
 
@@ -116,30 +116,43 @@ def get_Input(input_path=None):
     default_input = os.path.join(script_dir, "genetic-apex", "genetic-apex.html")
     default_output = os.path.join(script_dir, "genetic-apex", "genetic-apex.json")
 
-    # Use provided path or ask for input
-    file_to_read = input_path if input_path else input(f"Enter path to HTML file (default: {default_input}): ").strip()
-    if not file_to_read:
-        file_to_read = default_input
+    # Use provided paths or defaults
+    file_to_read = input_path if input_path else default_input
+    file_to_write = output_path if output_path else default_output
 
     # If input_path is relative, make it absolute using script_dir
     if input_path and not os.path.isabs(input_path):
         file_to_read = os.path.join(script_dir, input_path)
+    
+    # If output_path is relative, make it absolute using script_dir
+    if output_path and not os.path.isabs(output_path):
+        file_to_write = os.path.join(script_dir, output_path)
 
-    file_to_write = default_output
-
-    # Validate files
+    # Validate input file
     if not os.path.exists(file_to_read):
         raise FileNotFoundError(f"Input file not found: {file_to_read}")
     
     return file_to_read, file_to_write
 
-# ? Start of the script
-
 # Get input file paths
-file_to_read, file_to_write = get_Input("genetic-apex/genetic-apex.html")
+file_to_read, file_to_write = get_Input(
+    "triumphant-light/triumphant-light.html",
+    "triumphant-light/triumphant-light.json"
+)
 # Example usage
-with open(file_to_read, 'r') as file:
-    html = file.read()
+try:
+    with open(file_to_read, 'r') as file:
+        html = file.read()
+except FileNotFoundError:
+    create_file = input(f"File {file_to_read} not found. Would you like to create it? (y/n): ").lower()
+    if create_file == 'y':
+        with open(file_to_read, 'w') as file:
+            file.write('')
+        with open(file_to_read, 'r') as file:
+            html = file.read()
+    else:
+        print("Exiting program.")
+        exit()
 
 parsed_json = parse_table(html)
 

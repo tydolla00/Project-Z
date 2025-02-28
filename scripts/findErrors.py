@@ -66,7 +66,7 @@ def find_missing_fields(data):
     return missing_data
 
 # Get input from user
-file_to_read, _ = get_Input("./genetic-apex/genetic-apex.json")
+file_to_read, _ = get_Input("./triumphant-light/triumphant-light.json")
 # Read the JSON file
 with open(file_to_read, 'r') as f:
     data = json.load(f)

@@ -1620,7 +1620,7 @@
     "url": "/tcgpocket/mythicalisland/071.shtml",
     "details": {
       "hp": "60HP",
-      "type": "/tcgpocket/image/water.png",
+      "type": "/tcgpocket/image/fire.png",
       "weakness": {
         "image": "/tcgpocket/image/water.png",
         "value": "20"
