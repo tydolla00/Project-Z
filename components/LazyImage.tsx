@@ -1,17 +1,20 @@
 "use client";
 
 import Image, { ImageProps } from "next/image";
+import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
 
 const LazyImage = ({
   src,
   alt,
   defaultUrl: placeholder,
+  externalUrl,
   ...props
 }: {
   src: string;
   alt: string;
   defaultUrl: string;
+  externalUrl: string;
 } & ImageProps) => {
   const imgRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -32,7 +35,7 @@ const LazyImage = ({
         {
           threshold: 0.1, // Trigger when 10% of the image is visible.
           rootMargin: "100px", // Preload a bit before it fully appears.
-        }
+        },
       );
       observer.observe(imgRef.current);
     }
@@ -44,12 +47,14 @@ const LazyImage = ({
   }, []);
 
   return (
-    <Image
-      ref={imgRef}
-      src={isVisible ? src : placeholder || ""}
-      alt={alt}
-      {...props}
-    />
+    <Link target="_blank" href={`https://serebii.net/${externalUrl}`}>
+      <Image
+        ref={imgRef}
+        src={isVisible ? src : placeholder || ""}
+        alt={alt}
+        {...props}
+      />
+    </Link>
   );
 };
 

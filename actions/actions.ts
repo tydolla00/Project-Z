@@ -1,12 +1,26 @@
 "use server";
 
 import mythicalIslands from "@/scripts/mythical-islands/mythical-islands.json";
+import geneticApex from "@/scripts/genetic-apex/genetic-apex.json";
+import spaceTimeSmackDown from "@/scripts/space-time-smackdown/space-time-smackdown.json";
+import triumphantLight from "@/scripts/triumphant-light/triumphant-light.json";
 
-export async function getCards(): Promise<MythicalIsland[]> {
-  return mythicalIslands;
+export async function getCards(dex: string): Promise<Dex[]> {
+  switch (dex) {
+    case "mythical-islands":
+      return mythicalIslands;
+    case "genetic-apex":
+      return geneticApex;
+    case "space-time-smackdown":
+      return spaceTimeSmackDown;
+    case "triumphant-light":
+      return triumphantLight;
+    default:
+      return [];
+  }
 }
 
-export type MythicalIsland = {
+export type Dex = {
   set: {
     setName: string;
     image: string;
