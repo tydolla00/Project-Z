@@ -7,7 +7,6 @@ def get_Input(input_path=None):
 
     # Get input for file paths - using .json extension
     default_input = os.path.join(script_dir, "genetic-apex", "genetic-apex.json")
-    default_output = os.path.join(script_dir, "genetic-apex", "genetic-apex-errors.txt")
 
     # Use provided path or ask for input
     file_to_read = input_path if input_path else input(f"Enter path to HTML file (default: {default_input}): ").strip()
@@ -18,13 +17,12 @@ def get_Input(input_path=None):
     if input_path and not os.path.isabs(input_path):
         file_to_read = os.path.join(script_dir, input_path)
 
-    file_to_write = default_output
 
     # Validate files
     if not os.path.exists(file_to_read):
         raise FileNotFoundError(f"Input file not found: {file_to_read}")
     
-    return file_to_read, file_to_write
+    return file_to_read
 
 def find_missing_fields(data):
     # Define expected fields and their required subfields
@@ -66,7 +64,7 @@ def find_missing_fields(data):
     return missing_data
 
 # Get input from user
-file_to_read, _ = get_Input("./triumphant-light/triumphant-light.json")
+file_to_read = get_Input("./shining-revelry/shining-revelry.json")
 # Read the JSON file
 with open(file_to_read, 'r') as f:
     data = json.load(f)
@@ -77,5 +75,5 @@ missing_data = find_missing_fields(data)
 print("\nCards with missing fields:")
 print("==========================")
 for card in missing_data:
-    print(f"\nCard {card['name']} {card['pokedex']}:")
+    print(f"\nCard '{card['name']}' of {card['pokedex']}:")
     print(f"Missing fields: {', '.join(card['missing'])}")

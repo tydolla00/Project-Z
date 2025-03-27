@@ -136,8 +136,8 @@ def get_Input(input_path=None, output_path=None):
 
 # Get input file paths
 file_to_read, file_to_write = get_Input(
-    "triumphant-light/triumphant-light.html",
-    "triumphant-light/triumphant-light.json"
+    "shining-revelry/shining-revelry.html",
+    "shining-revelry/shining-revelry.json"
 )
 # Example usage
 try:
