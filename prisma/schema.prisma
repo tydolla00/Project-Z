@@ -1,0 +1,71 @@
+// TODO Need model for user and trades.
+// Trades can be posted and will stay online for up to 8 hours.
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
+}
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Card {
+  id          Int       @id @default(autoincrement()) @map("card_id")
+  name        String
+  type        String
+  image       String
+  set         Set       @relation(fields: [setId], references: [id])
+  setId       Int       @map("set_id")
+  details     Details?
+  expansion   String
+  pokedex     String
+  url         String
+  thumbnail   String
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Set {
+  id          Int      @id @default(autoincrement()) @map("set_id")
+  setName     String   @unique
+  image       String
+  cards       Card[]
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Details {
+  id                Int           @id @default(autoincrement()) @map("details_id")
+  hp                Int
+  type              String
+  weaknessType      WeaknessType? @relation(fields: [weaknessTypeImage, weaknessTypeValue], references: [image, value])
+  weaknessTypeImage String?       @map("weakness_type_image")
+  weaknessTypeValue String?       @map("weakness_type_value")
+  retreatCost       RetreatCost?  @relation(fields: [retreatCostImage, retreatCostCount], references: [image, count])
+  retreatCostImage  String?       @map("retreat_cost_image")
+  retreatCostCount  Int?          @map("retreat_cost_count")
+  card              Card          @relation(fields: [cardId], references: [id])
+  cardId            Int           @unique @map("card_id")
+}
+
+model WeaknessType {
+  image       String
+  value       String
+  details     Details[]
+
+  @@id(name: "imageValue", [image, value])
+}
+
+model RetreatCost {
+  // id          Int           @id @default(autoincrement()) @map("retreat_cost_id")
+  image       String
+  count       Int
+  details     Details[]
+
+  @@id(name: "imageCount", [image, count])
+}
+
+
