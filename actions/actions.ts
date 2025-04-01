@@ -4,6 +4,7 @@ import mythicalIslands from "@/scripts/mythical-islands/mythical-islands.json";
 import geneticApex from "@/scripts/genetic-apex/genetic-apex.json";
 import spaceTimeSmackDown from "@/scripts/space-time-smackdown/space-time-smackdown.json";
 import triumphantLight from "@/scripts/triumphant-light/triumphant-light.json";
+import shiningRevelry from "@/scripts/shining-revelry/shining-revelry.json";
 
 export async function getCards(dex: string): Promise<Dex[]> {
   switch (dex) {
@@ -15,6 +16,9 @@ export async function getCards(dex: string): Promise<Dex[]> {
       return spaceTimeSmackDown;
     case "triumphant-light":
       return triumphantLight;
+    case "shining-revelry":
+      return shiningRevelry;
+
     default:
       return [];
   }

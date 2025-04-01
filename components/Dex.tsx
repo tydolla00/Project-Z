@@ -1,18 +1,28 @@
 import LazyImage from "./LazyImage";
-import { type Dex } from "@/actions/actions";
+import prisma from "@/prisma/db";
 
-export const CardDex = ({ cards }: { cards: Dex[] }) => (
-  <div className="grid grid-cols-2 place-content-center gap-4 p-4 md:grid-cols-3 lg:grid-cols-5">
-    {cards.map((card: Dex, index) => (
+export const CardDex = ({
+  cards,
+}: {
+  cards: Awaited<
+    ReturnType<
+      typeof prisma.card.findMany<{ include: { details: true; set: true } }>
+    >
+  >;
+}) => (
+  <div className="grid grid-cols-2 place-content-center gap-y-4 p-4 md:grid-cols-3 lg:grid-cols-6">
+    {cards.map((card, index) => (
       <div key={`${card.name}-${index}`} className="flex flex-col items-center">
         <LazyImage
+          className="rounded-lg select-none"
           key={`${card.name}-${index}`}
           src={`https://serebii.net${card.thumbnail.replace("/th", "")}`}
           alt={`${card.name} Card`}
           defaultUrl="/back.png"
           externalUrl={card.url}
-          width={300}
-          height={400}
+          width={200}
+          height={300}
+          draggable={false}
         />
         {/* <div>Expansion {card.expansion}</div>
         <div>HP {card.details.hp}</div>

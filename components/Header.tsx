@@ -3,19 +3,19 @@ import { Menu } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { ModeToggle } from "@/next-themes/modetoggle";
 
-export const Navbar = () => {
+export default function SiteHeader() {
   return (
     <header className="bg-background/80 sticky top-0 z-50 w-full border-b backdrop-blur-sm">
-      <div className="mx-5 flex h-16 items-center">
+      <div className="container flex h-16 items-center">
         <div className="flex items-center gap-6 md:gap-10">
-          <Link href="/" className="flex items-start gap-2">
+          <Link href="/" className="flex items-center gap-2">
+            <div className="h-8 w-8 rounded-full bg-gradient-to-br from-red-600 to-red-500"></div>
             <span className="bg-gradient-to-r from-red-600 to-red-500 bg-clip-text text-xl font-bold text-transparent">
-              Pocket Trading
+              PokéTrade
             </span>
           </Link>
-          <nav className="hidden items-center gap-6 md:flex">
+          <nav className="hidden gap-6 md:flex">
             <Link
               href="/"
               className="text-sm font-medium transition-colors hover:text-red-500"
@@ -34,13 +34,6 @@ export const Navbar = () => {
             >
               Collections
             </Link>
-            <Link
-              href="/dex"
-              className="text-sm font-medium transition-colors hover:text-red-500"
-            >
-              Dex
-            </Link>
-            <ModeToggle />
           </nav>
         </div>
 
@@ -79,4 +72,4 @@ export const Navbar = () => {
       </div>
     </header>
   );
-};
+}
