@@ -1,7 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import { PrismaNeon } from "@prisma/adapter-neon";
 import { Pool, neonConfig } from "@neondatabase/serverless";
-import config from "../lib/config";
+// import config from "../lib/config";
 
 import ws from "ws";
 neonConfig.webSocketConstructor = ws;
@@ -14,7 +14,7 @@ declare global {
   var prisma: PrismaClient | undefined;
 }
 
-const connectionString = config.DATABASE_URL;
+const connectionString = process.env.DATABASE_URL;
 
 const pool = new Pool({ connectionString });
 const adapter = new PrismaNeon(pool);
