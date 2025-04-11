@@ -20,7 +20,8 @@ const pool = new Pool({ connectionString }) as any;
 const adapter = new PrismaNeon(pool);
 const prisma =
   // @ts-ignore
-  global.prisma || new PrismaClient({ adapter, log: ["warn", "error"] });
+  global.prisma ||
+  new PrismaClient({ adapter, log: ["warn", "error", "info", "query"] });
 
 if (process.env.NODE_ENV === "development") global.prisma = prisma;
 
