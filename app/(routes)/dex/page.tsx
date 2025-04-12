@@ -1,5 +1,5 @@
 // import { getCards } from "@/actions/actions";
-// import { CardDex } from "@/components/Dex";
+import { CardDex } from "@/components/Dex";
 // import { FillText } from "@/components/FillText";
 // import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 // import { ScrollArea } from "@/components/ui/scroll-area";
