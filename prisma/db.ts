@@ -21,7 +21,7 @@ const adapter = new PrismaNeon(pool);
 const prisma =
   // @ts-ignore
   global.prisma ||
-  new PrismaClient({ adapter, log: ["warn", "error", "info", "query"] });
+  new PrismaClient({ adapter, log: ["warn", "error", "info"] });
 
 if (process.env.NODE_ENV === "development") global.prisma = prisma;
 

@@ -3,7 +3,6 @@ import { CardDex } from "@/components/Dex";
 // import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
 // import Link from "next/link";
-import { Suspense } from "react";
 
 import prisma from "@/prisma/db";
 
