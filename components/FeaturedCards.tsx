@@ -18,7 +18,7 @@ export default function FeaturedCards({ category }: FeaturedCardsProps) {
         rarity: "Ultra Rare",
         price: 299.99,
         rating: 4.9,
-        image: "/tcgpocket/th/geneticapex/36.jpg", // Updated image
+        image: "/tcgpocket/th/geneticapex/36.jpg",
       },
       {
         id: 2,
@@ -27,7 +27,7 @@ export default function FeaturedCards({ category }: FeaturedCardsProps) {
         rarity: "Rare",
         price: 49.99,
         rating: 4.8,
-        image: "/tcgpocket/th/geneticapex/285.jpg", // Updated image
+        image: "/tcgpocket/th/geneticapex/285.jpg",
       },
       {
         id: 3,
@@ -36,7 +36,7 @@ export default function FeaturedCards({ category }: FeaturedCardsProps) {
         rarity: "Ultra Rare",
         price: 199.99,
         rating: 4.7,
-        image: "/tcgpocket/th/geneticapex/129.jpg", // Updated image
+        image: "/tcgpocket/th/geneticapex/129.jpg",
       },
     ],
     rare: [
@@ -47,7 +47,7 @@ export default function FeaturedCards({ category }: FeaturedCardsProps) {
         rarity: "Secret Rare",
         price: 349.99,
         rating: 5.0,
-        image: "/tcgpocket/th/space-time-smackdown/49.jpg", // Placeholder, update with correct image if available
+        image: "/tcgpocket/th/space-time-smackdown/49.jpg",
       },
       {
         id: 6,
@@ -56,7 +56,7 @@ export default function FeaturedCards({ category }: FeaturedCardsProps) {
         rarity: "Alt Art",
         price: 279.99,
         rating: 4.9,
-        image: "/tcgpocket/th/space-time-smackdown/50.jpg", // Placeholder, update with correct image if available
+        image: "/tcgpocket/th/space-time-smackdown/50.jpg",
       },
       {
         id: 7,
@@ -65,7 +65,7 @@ export default function FeaturedCards({ category }: FeaturedCardsProps) {
         rarity: "Alt Art",
         price: 399.99,
         rating: 4.9,
-        image: "/tcgpocket/th/space-time-smackdown/51.jpg", // Placeholder, update with correct image if available
+        image: "/tcgpocket/th/space-time-smackdown/51.jpg",
       },
     ],
     new: [
@@ -76,7 +76,7 @@ export default function FeaturedCards({ category }: FeaturedCardsProps) {
         rarity: "Hyper Rare",
         price: 129.99,
         rating: 4.7,
-        image: "/tcgpocket/th/mythical-islands/31.jpg", // Updated image
+        image: "/tcgpocket/th/mythical-islands/31.jpg",
       },
       {
         id: 10,
@@ -85,7 +85,7 @@ export default function FeaturedCards({ category }: FeaturedCardsProps) {
         rarity: "Ultra Rare",
         price: 79.99,
         rating: 4.6,
-        image: "/tcgpocket/th/mythical-islands/32.jpg", // Placeholder, update with correct image if available
+        image: "/tcgpocket/th/mythical-islands/32.jpg",
       },
       {
         id: 11,
@@ -94,7 +94,7 @@ export default function FeaturedCards({ category }: FeaturedCardsProps) {
         rarity: "Ultra Rare",
         price: 89.99,
         rating: 4.8,
-        image: "/tcgpocket/th/genetic-apex/5.jpg", // Updated image
+        image: "/tcgpocket/th/genetic-apex/5.jpg",
       },
     ],
   };

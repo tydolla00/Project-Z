@@ -42,7 +42,6 @@ export default function HeroSection() {
   return (
     <section className="relative">
       {/* Background Pattern */}
-      <div className="absolute inset-0 bg-[url('/placeholder.svg?height=500&width=500&text=pattern')] bg-repeat opacity-5" />
 
       <div className="relative container px-4 py-16 md:py-24">
         <div className="mx-auto max-w-5xl">

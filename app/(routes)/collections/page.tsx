@@ -24,7 +24,7 @@ export default function CollectionsPage() {
       name: "Base Set",
       releaseYear: 1999,
       cardCount: 102,
-      image: "/placeholder.svg?height=400&width=600&text=Base+Set",
+      image: "/back.png",
       color: "from-red-600 to-red-500",
     },
     {
@@ -32,7 +32,7 @@ export default function CollectionsPage() {
       name: "Jungle",
       releaseYear: 1999,
       cardCount: 64,
-      image: "/placeholder.svg?height=400&width=600&text=Jungle",
+      image: "/back.png",
       color: "from-red-500 to-red-400",
     },
     {
@@ -40,7 +40,7 @@ export default function CollectionsPage() {
       name: "Fossil",
       releaseYear: 1999,
       cardCount: 62,
-      image: "/placeholder.svg?height=400&width=600&text=Fossil",
+      image: "/back.png",
       color: "from-red-600 to-red-500",
     },
     {
@@ -48,7 +48,7 @@ export default function CollectionsPage() {
       name: "Team Rocket",
       releaseYear: 2000,
       cardCount: 83,
-      image: "/placeholder.svg?height=400&width=600&text=Team+Rocket",
+      image: "/back.png",
       color: "from-red-500 to-red-400",
     },
     {
@@ -56,7 +56,7 @@ export default function CollectionsPage() {
       name: "Gym Heroes",
       releaseYear: 2000,
       cardCount: 132,
-      image: "/placeholder.svg?height=400&width=600&text=Gym+Heroes",
+      image: "/back.png",
       color: "from-red-600 to-red-500",
     },
     {
@@ -64,7 +64,7 @@ export default function CollectionsPage() {
       name: "Gym Challenge",
       releaseYear: 2000,
       cardCount: 132,
-      image: "/placeholder.svg?height=400&width=600&text=Gym+Challenge",
+      image: "/back.png",
       color: "from-red-500 to-red-400",
     },
     {
@@ -72,7 +72,7 @@ export default function CollectionsPage() {
       name: "Neo Genesis",
       releaseYear: 2000,
       cardCount: 111,
-      image: "/placeholder.svg?height=400&width=600&text=Neo+Genesis",
+      image: "/back.png",
       color: "from-red-600 to-red-500",
     },
     {
@@ -80,7 +80,7 @@ export default function CollectionsPage() {
       name: "Neo Discovery",
       releaseYear: 2001,
       cardCount: 75,
-      image: "/placeholder.svg?height=400&width=600&text=Neo+Discovery",
+      image: "/back.png",
       color: "from-red-500 to-red-400",
     },
   ];
@@ -155,7 +155,7 @@ export default function CollectionsPage() {
 
                     <div className="relative aspect-[4/3]">
                       <Image
-                        src={set.image || "/placeholder.svg"}
+                        src={set.image || "/back.png"}
                         alt={set.name}
                         width={600}
                         height={400}

@@ -58,8 +58,8 @@ dist/
 downloads/
 eggs/
 .eggs/
-lib/
-lib64/
+scripts/lib/
+scripts/lib64/
 parts/
 sdist/
 var/

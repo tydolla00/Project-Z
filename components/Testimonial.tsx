@@ -11,7 +11,7 @@ export default function TestimonialSection() {
       role: "Collector for 10+ years",
       content:
         "PokéTrade has completely transformed how I collect cards. I've found rare cards I've been searching for years!",
-      avatar: "/placeholder.svg?height=100&width=100&text=AJ",
+      avatar: "/back.png",
     },
     {
       id: 2,
@@ -19,7 +19,7 @@ export default function TestimonialSection() {
       role: "Tournament Player",
       content:
         "The quality of cards and the verification process gives me confidence when purchasing for competitions.",
-      avatar: "/placeholder.svg?height=100&width=100&text=SW",
+      avatar: "/back.png",
     },
     {
       id: 3,
@@ -27,7 +27,7 @@ export default function TestimonialSection() {
       role: "New Collector",
       content:
         "As someone new to collecting, the community here has been incredibly welcoming and helpful.",
-      avatar: "/placeholder.svg?height=100&width=100&text=MC",
+      avatar: "/back.png",
     },
   ];
 

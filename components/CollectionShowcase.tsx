@@ -47,7 +47,7 @@ export default function CollectionShowcase() {
 
           <div className="relative aspect-[4/3]">
             <Image
-              src={collection.image || "/placeholder.svg"}
+              src={collection.image || "/back.png"}
               alt={collection.name}
               width={600}
               height={400}

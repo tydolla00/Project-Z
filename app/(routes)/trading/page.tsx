@@ -84,7 +84,7 @@ export default function TradingPage() {
                                 <Image
                                   height={200}
                                   width={200}
-                                  src={`/placeholder.svg?height=100&width=70&text=Card${card}`}
+                                  src={`/back.png`}
                                   alt={`Card ${card}`}
                                   className="h-full w-full rounded-lg object-cover"
                                 />
@@ -105,7 +105,7 @@ export default function TradingPage() {
                                 <Image
                                   height={200}
                                   width={200}
-                                  src={`/placeholder.svg?height=100&width=70&text=Want${card}`}
+                                  src={`/back.png`}
                                   alt={`Wanted Card ${card}`}
                                   className="h-full w-full rounded-lg object-cover"
                                 />
@@ -170,7 +170,7 @@ export default function TradingPage() {
                                   <Image
                                     height={200}
                                     width={200}
-                                    src={`/placeholder.svg?height=60&width=40&text=${card}`}
+                                    src={`/back.png`}
                                     alt={`Card ${card}`}
                                     className="h-full w-full rounded-lg object-cover"
                                   />
@@ -232,7 +232,7 @@ export default function TradingPage() {
                                   <Image
                                     height={200}
                                     width={200}
-                                    src={`/placeholder.svg?height=60&width=40&text=W${card}`}
+                                    src={`/back.png`}
                                     alt={`Wanted Card ${card}`}
                                     className="h-full w-full rounded-lg object-cover"
                                   />
