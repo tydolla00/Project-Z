@@ -9,7 +9,7 @@ import { CardDex } from "@/components/Dex";
 
 // Look at the meta for the page on serebii
 export default async function Page() {
-  return <>Hello</>;
+  return <CardDex cards={[]} />;
   // const cards = await prisma.card.findMany({
   //   include: { details: true, set: true },
   // });
