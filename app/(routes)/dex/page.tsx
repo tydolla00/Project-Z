@@ -25,6 +25,7 @@ export default async function Page() {
   const shiningRevelry = cards.filter(
     (c) => c.set.setName === "Shining Revelry",
   );
+  console.log("CARDS", cards.length);
 
   // const mythicalIslands = await getCards("mythical-islands");
   // const geneticApex = await getCards("genetic-apex");
