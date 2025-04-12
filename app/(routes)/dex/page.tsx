@@ -5,13 +5,14 @@ import { CardDex } from "@/components/Dex";
 import { ScrollArea } from "@/components/ui/scroll-area";
 // import Link from "next/link";
 import { Suspense } from "react";
-import prisma from "@/prisma/db";
+// import prisma from "@/prisma/db";
 
 // Look at the meta for the page on serebii
 export default async function Page() {
-  const cards = await prisma.card.findMany({
-    include: { details: true, set: true },
-  });
+  // const cards = await prisma.card.findMany({
+  //   include: { details: true, set: true },
+  // });
+  const cards = [] as any[];
   const geneticApex = cards.filter((c) => c.set.setName === "Genetic Apex");
   const mythicalIslands = cards.filter(
     (c) => c.set.setName === "Mythical Island",
