@@ -117,6 +117,7 @@ async function main() {
           pokedex,
           url: card.url,
           thumbnail: card.thumbnail,
+          rarity: card.rarity,
           details: {
             create: {
               hp: Number(card.details.hp.replace(/\D/g, "")) || -1,
