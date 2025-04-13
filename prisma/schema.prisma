@@ -22,7 +22,8 @@ model Card {
   pokedex     String
   url         String
   thumbnail   String
-  rarity      String   @default("")    
+  rarity      String   @default("")
+  isTradeable Boolean  @default(false) @map("is_tradeable")    
 
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
