@@ -22,6 +22,9 @@ def parse_table(html):
                 "pokedex": next((text.strip() for text in set_td.text.strip().split('\n') if '/' in text), "")
             }
             
+            # Extract rarity from the first td
+            rarity = set_td.find('img')['src'] if set_td.find('img') else ""
+            
             # Parse second td - thumbnail
             thumbnail = cols[1].find('img')['src'] if cols[1].find('img') else ""
             
@@ -97,7 +100,8 @@ def parse_table(html):
                 "name": name,
                 "url": url,
                 "details": details,
-                "expansion": expansion
+                "expansion": expansion,
+                "rarity": rarity  # Add rarity property
             }
             
             cards.append(card)
