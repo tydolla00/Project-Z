@@ -20,7 +20,7 @@ model Card {
   pokedex     String
   url         String
   thumbnail   String
-  rarity      String   @default("")
+  rarity      String   
   isTradeable Boolean  @default(false) @map("is_tradeable")
   trades      Trade[]    
 
@@ -81,7 +81,7 @@ model Trade {
   receivedTrades  TradeLink[] @relation("ReceivingTrade") // trades made by other user. otherUser -> thisUser
   isSeeking       Boolean     @map("is_seeking") // true if the user is looking for cards. false if user is offering cards
 
-  isPrivate       Boolean     @default(false) // true if the user wants the trade to be accepted
+  isPrivate       Boolean     @default(false) @map("is_private") // true if the user wants the trade to be accepted
   expiresAt       DateTime    @map("expires_at")
   createdAt       DateTime    @default(now())
   updatedAt       DateTime    @updatedAt
