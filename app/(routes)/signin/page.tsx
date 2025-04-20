@@ -19,8 +19,8 @@ export default async function Page() {
         <form
           action={async (fd) => {
             "use server";
-            const provider = fd.get("provider")?.slice(13);
-            console.log(provider);
+            const providerValue = fd.get("provider") as string;
+            const provider = providerValue.replace("Sign in with ", "");
             switch (provider) {
               case "Google":
                 await signIn("google", { redirectTo: domain });
