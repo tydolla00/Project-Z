@@ -21,7 +21,9 @@ const LazyImage = ({
 
   useEffect(() => {
     let observer: IntersectionObserver;
+    let image: HTMLImageElement;
     if (imgRef.current) {
+      image = imgRef.current;
       // Create an observer that sets isVisible to true when the image enters the viewport.
       observer = new IntersectionObserver(
         (entries) => {
@@ -37,11 +39,11 @@ const LazyImage = ({
           rootMargin: "100px", // Preload a bit before it fully appears.
         },
       );
-      observer.observe(imgRef.current);
+      observer.observe(image);
     }
     return () => {
-      if (observer && observer.unobserve && imgRef.current) {
-        observer.unobserve(imgRef.current);
+      if (observer && observer.unobserve && image) {
+        observer.unobserve(image);
       }
     };
   }, []);
