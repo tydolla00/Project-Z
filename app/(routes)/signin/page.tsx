@@ -6,6 +6,11 @@ import { domain } from "@/lib/utils";
 // import { GitHubLogoIcon } from "@radix-ui/react-icons";
 import { redirect } from "next/navigation";
 
+/**
+ * Renders the sign-in page, redirecting authenticated users to the home page.
+ *
+ * Displays options for users to sign in using GitHub or Google. If the user is already authenticated, they are redirected to the root path.
+ */
 export default async function Page() {
   if (await auth()) redirect("/");
 
