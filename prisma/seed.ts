@@ -9,6 +9,13 @@ import shiningRevelry from "../scripts/shining-revelry/shining-revelry.json";
 
 const prisma = new PrismaClient();
 
+/**
+ * Seeds the database with predefined card sets and their associated cards, including detailed card attributes and relations.
+ *
+ * Upserts five card sets and iterates through imported card data to create card records with nested details, retreat costs, and weakness types. Skips cards with missing required fields or unknown set names.
+ *
+ * @remark Cards missing a name or set pokedex, or belonging to an unknown set, are skipped and not inserted.
+ */
 async function main() {
   const geneticApexSet = await prisma.set.upsert({
     where: { setName: "Genetic Apex" }, // Changed from id to setName
