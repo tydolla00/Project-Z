@@ -43,9 +43,13 @@ export const domain =
  * }, 300);
  * ```
  */
-export const debounce = (fn: Function, delay: number) => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const debounce = <T extends (...args: any[]) => any>(
+  fn: T,
+  delay: number,
+): ((...args: Parameters<T>) => void) => {
   let timeoutId: NodeJS.Timeout;
-  return (...args: any[]) => {
+  return (...args: Parameters<T>) => {
     clearTimeout(timeoutId);
     timeoutId = setTimeout(() => fn(...args), delay);
   };
