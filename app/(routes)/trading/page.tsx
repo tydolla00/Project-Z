@@ -11,7 +11,7 @@ export default async function TradingPage() {
   const session = await auth();
   if (!session) redirect("/signin");
 
-  const identifier = `${session.user?.email}.${session.user?.["provider" as keyof typeof session.user]}`;
+  const identifier = `${session.user?.email}.${session.user?.provider}`;
   console.log({ identifier });
 
   // Maybe make each one fetch it's own data, so we're not waiting for all of them to load
