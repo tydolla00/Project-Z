@@ -19,7 +19,7 @@ export const config: NextAuthConfig = {
     // async signIn(params) {},
     jwt: async ({ token, user, account, profile, trigger, session }) => {
       if (account) {
-        token.provider = account?.provider;
+        token.provider = account?.provider.toUpperCase();
       }
       return token;
     },
