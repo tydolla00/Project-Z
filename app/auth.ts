@@ -1,7 +1,15 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import NextAuth, { NextAuthConfig } from "next-auth";
+import NextAuth, { DefaultSession, NextAuthConfig } from "next-auth";
 import GitHub from "next-auth/providers/github";
 import Google from "next-auth/providers/google";
+
+declare module "next-auth" {
+  interface Session {
+    user: {
+      provider?: string;
+    } & DefaultSession["user"];
+  }
+}
 
 export const config: NextAuthConfig = {
   providers: [GitHub, Google],
@@ -25,8 +33,8 @@ export const config: NextAuthConfig = {
     },
     session: async ({ session, token, newSession, user, trigger }) => {
       if (token) {
-        // @ts-expect-error Bad typing
-        session.user.provider = token.provider;
+        // TODO Handle undefined provider.
+        session.user.provider = token.provider as string;
       }
       return session;
     },

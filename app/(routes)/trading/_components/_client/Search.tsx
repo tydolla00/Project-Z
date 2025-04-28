@@ -26,15 +26,15 @@ export const Search = () => {
   }, 300);
 
   return (
-    <div className="my-4 w-lg">
+    <div className="my-4 max-w-lg">
       <Label className="my-2">Search for a card</Label>
       <Input
         type="search"
         id="search"
         ref={input}
-        placeholder="Search for a trade"
+        placeholder="Search for a card"
         onChange={handleSearch}
-        defaultValue={searchParams.get("card")?.toString()}
+        defaultValue={searchParams.get("card") || ""}
       />
     </div>
   );

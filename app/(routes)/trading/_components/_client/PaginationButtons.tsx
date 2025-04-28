@@ -14,16 +14,17 @@ import { useSearchParams } from "next/navigation";
 export const CardPagination = ({
   count,
   page,
+  pageSize = 20,
 }: {
   count: number;
   page: number;
+  pageSize?: number;
 }) => {
   const searchParams = useSearchParams();
   const card = searchParams.get("card");
 
-  const totalPages = Math.ceil(count / 20);
-  const baseUrl = `/trading/create/?page=`;
-
+  const totalPages = Math.ceil(count / pageSize);
+  const baseUrl = `${window.location.pathname}?page=`;
   const getPageNumbers = () => {
     const numbers: (number | string)[] = [];
 
@@ -60,7 +61,7 @@ export const CardPagination = ({
       <PaginationContent>
         <PaginationItem>
           <PaginationPrevious
-            href={`${baseUrl}${Math.max(1, page - 1)}${card ? `&card=${card}` : ""}`}
+            href={`${baseUrl}${Math.max(1, page - 1)}${card ? `&card=${encodeURIComponent(card)}` : ""}`}
           />
         </PaginationItem>
 
@@ -85,7 +86,7 @@ export const CardPagination = ({
 
         <PaginationItem>
           <PaginationNext
-            href={`${baseUrl}${Math.min(totalPages, page + 1)}${card ? `&card=${card}` : ""}`}
+            href={`${baseUrl}${Math.min(totalPages, page + 1)}${card ? `&card=${encodeURIComponent(card)}` : ""}`}
           />
         </PaginationItem>
       </PaginationContent>
