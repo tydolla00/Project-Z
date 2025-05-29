@@ -1,11 +1,11 @@
-import { H2 } from "@/components/typography/headings";
+import { H2, H3 } from "@/components/typography/headings";
 import { Search } from "../_components/_client/Search";
-import { Suspense } from "react";
 import prisma from "@/prisma/db";
-import LazyImage from "@/components/LazyImage";
 import { CardPagination } from "../_components/_client/PaginationButtons";
 import { Card } from "@prisma/client";
 import { toast } from "sonner";
+import { TradingArea } from "../_components/_client/TradingArea";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
 export default async function Page(props: {
   searchParams?: Promise<{
@@ -49,75 +49,28 @@ export default async function Page(props: {
     toast.error("Failed to fetch cards. Please try again.");
   }
 
-  console.log({ query, currentPage, searchParams });
-
   return (
-    <>
-      <H2>Create a trade</H2>
-      <p className="text-muted-foreground text-sm">
-        Create a trade where you can share with others.
-      </p>
+    <div className="space-y-5">
+      <div>
+        <H3>Instructions:</H3>
+        <p className="text-muted-foreground text-sm">
+          Drag cards to the trade zone to create a trade. You can also search
+          for cards by name.
+        </p>
+        <p className="text-muted-foreground text-sm">
+          When you are done click the next button to move onto the next step.
+        </p>
+      </div>
+      <Alert className="w-fit">
+        <AlertTitle>Can't find a card?</AlertTitle>
+        <AlertDescription>
+          Some cards aren't available for trade. Please ensure you're spelling
+          the name correctly.
+        </AlertDescription>
+      </Alert>
       <Search />
-      <Suspense
-        key={query + currentPage}
-        fallback={
-          <div className="grid grid-cols-2 place-content-center gap-y-4 p-4 md:grid-cols-3 lg:grid-cols-6">
-            {Array(6)
-              .fill(0)
-              .map((_, i) => (
-                <div
-                  key={i}
-                  className="h-[300px] w-[200px] animate-pulse rounded-lg bg-gray-200"
-                ></div>
-              ))}
-          </div>
-        }
-      >
-        <Cards
-          cards={cards}
-          query={query}
-          page={currentPage}
-          count={cardsCount}
-        />
-      </Suspense>
+      <TradingArea cards={cards} />
       <CardPagination count={cardsCount} page={currentPage} />
-    </>
+    </div>
   );
 }
-
-const Cards = async ({
-  query,
-  page,
-  count,
-  cards,
-}: {
-  query: string;
-  page: number;
-  count: number;
-  cards: Card[];
-}) => {
-  return (
-    <>
-      {cards.length === 0 && (
-        <div className="py-8 text-center">
-          <p>No cards found. Try a different search term.</p>
-        </div>
-      )}
-      <div className="grid grid-cols-2 place-content-center gap-y-4 p-4 md:grid-cols-3 lg:grid-cols-6">
-        {cards.map((card) => (
-          <div key={card.id}>
-            <LazyImage
-              title={card.name}
-              className="rounded-lg select-none"
-              alt={`${card.name} Card`}
-              src={`https://serebii.net${card.thumbnail.replace("/th", "")}`}
-              width={200}
-              height={300}
-              draggable={false}
-            />
-          </div>
-        ))}
-      </div>
-    </>
-  );
-};

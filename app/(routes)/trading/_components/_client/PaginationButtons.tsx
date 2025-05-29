@@ -9,7 +9,7 @@ import {
   PaginationEllipsis,
   PaginationNext,
 } from "@/components/ui/pagination";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, usePathname } from "next/navigation";
 
 export const CardPagination = ({
   count,
@@ -21,10 +21,11 @@ export const CardPagination = ({
   pageSize?: number;
 }) => {
   const searchParams = useSearchParams();
+  const pathname = usePathname();
   const card = searchParams.get("card");
 
   const totalPages = Math.ceil(count / pageSize);
-  const baseUrl = `${window.location.pathname}?page=`;
+  const baseUrl = `${pathname}?page=`;
   const getPageNumbers = () => {
     const numbers: (number | string)[] = [];
 

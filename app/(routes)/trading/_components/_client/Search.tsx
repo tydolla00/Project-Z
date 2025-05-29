@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { debounce } from "@/lib/utils";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 
 export const Search = () => {
   const searchParams = useSearchParams();
@@ -25,14 +25,24 @@ export const Search = () => {
     replace(newUrl);
   }, 300);
 
+  useEffect(() => {
+    console.log("this ran");
+    document.getElementById("cards-list")?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+      inline: "nearest",
+    });
+  }, [searchParams.get("card")]);
+
   return (
     <div className="my-4 max-w-lg">
       <Label className="my-2">Search for a card</Label>
       <Input
+        autoCorrect="off"
         type="search"
         id="search"
         ref={input}
-        placeholder="Search for a card"
+        placeholder="Pikachu..."
         onChange={handleSearch}
         defaultValue={searchParams.get("card") || ""}
       />
