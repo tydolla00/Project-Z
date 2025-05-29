@@ -4,8 +4,12 @@ import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { ModeToggle } from "@/next-themes/modetoggle";
+import { auth } from "@/app/auth";
+import { AuthButton } from "./client/buttons";
 
-export const Navbar = () => {
+export const Navbar = async () => {
+  const session = await auth();
+  console.log(session);
   return (
     <header className="bg-background/80 sticky top-0 z-50 w-full border-b backdrop-blur-sm">
       <div className="mx-5 flex h-16 items-center">
@@ -41,6 +45,7 @@ export const Navbar = () => {
               Dex
             </Link>
             <ModeToggle />
+            <AuthButton hideOnSmallScreens={true} session={session} />
           </nav>
         </div>
 

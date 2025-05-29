@@ -6,10 +6,24 @@ import geneticApex from "../scripts/genetic-apex/genetic-apex.json";
 import spaceTimeSmackDown from "../scripts/space-time-smackdown/space-time-smackdown.json";
 import triumphantLight from "../scripts/triumphant-light/triumphant-light.json";
 import shiningRevelry from "../scripts/shining-revelry/shining-revelry.json";
+import celestialGuardians from "../scripts/celestial-guardians/celestial-guardians.json";
+import extraDimensionalCrisis from "../scripts/extradimensional-crisis/extradimensional-crisis.json";
 
 const prisma = new PrismaClient();
 
+// ! When adding new sets make sure to update the setName in the upsert calls below
+// ! and the import paths to the JSON files in the imports section above.
+// ! And add it to the switch statement in the main function to handle the set ID correctly.
+
+/**
+ * Seeds the database with predefined card sets and their associated cards, including detailed card attributes and relations.
+ *
+ * Upserts five card sets and iterates through imported card data to create card records with nested details, retreat costs, and weakness types. Skips cards with missing required fields or unknown set names.
+ *
+ * @remark Cards missing a name or set pokedex, or belonging to an unknown set, are skipped and not inserted.
+ */
 async function main() {
+  console.time("Seeding started...");
   const geneticApexSet = await prisma.set.upsert({
     where: { setName: "Genetic Apex" }, // Changed from id to setName
     update: {},
@@ -54,17 +68,23 @@ async function main() {
     },
   });
 
-  // const retreats = await prisma.retreatCost.findMany();
-  // const weakness = await prisma.weaknessType.findMany();
+  const celestialGuardiansSet = await prisma.set.upsert({
+    where: { setName: "Celestial Guardians" }, // Changed from id to setName
+    update: {},
+    create: {
+      setName: "Celestial Guardians",
+      image: "/tcgpocket/sets/celestial-guardians.png",
+    },
+  });
 
-  // const retreatMap = new Map<string, number>();
-  // retreats.forEach((retreat, i) => {
-  //   retreatMap.set(`${retreat.image}/${retreat.count}`, retreat.id);
-  // });
-  // const weaknessMap = new Map<string, number>();
-  // weakness.forEach((retreat, i) => {
-  //   weaknessMap.set(`${retreat.image}/${retreat.value}`, retreat.id);
-  // });
+  const extraDimensionalCrisisSet = await prisma.set.upsert({
+    where: { setName: "Extradimensional Crisis" }, // Changed from id to setName
+    update: {},
+    create: {
+      setName: "Extradimensional Crisis",
+      image: "/tcgpocket/sets/extra-dimensional-crisis.png",
+    },
+  });
 
   const cards = [
     shiningRevelry,
@@ -72,6 +92,8 @@ async function main() {
     spaceTimeSmackDown,
     mythicalIslands,
     geneticApex,
+    celestialGuardians,
+    extraDimensionalCrisis,
   ];
 
   while (cards.length > 0) {
@@ -98,6 +120,12 @@ async function main() {
         case "Shining Revelry":
           setId = shiningRevelrySet.id;
           break;
+        case "Celestial Guardians":
+          setId = celestialGuardiansSet.id;
+          break;
+        case "Extradimensional Crisis":
+          setId = extraDimensionalCrisisSet.id;
+          break;
         default:
           console.error(`Unknown set name: ${card.set.setName}`);
           continue; // Skip this card if the set name is unknown
@@ -106,9 +134,17 @@ async function main() {
       const type = card.details.type.split("/").pop()?.split(".")[0];
       const pokedex = card.set.pokedex.split(card.set.setName)[1].trim();
 
-      // Create the card and its details
-      await prisma.card.create({
-        data: {
+      // Upsert the card and its details
+      await prisma.card.upsert({
+        where: {
+          name_setId_pokedex: {
+            name: card.name,
+            setId: setId,
+            pokedex: pokedex,
+          },
+        },
+        update: {}, // No update, or specify fields to update if needed
+        create: {
           name: card.name,
           type: type || "Unknown type",
           image: card.thumbnail,
@@ -117,6 +153,7 @@ async function main() {
           pokedex,
           url: card.url,
           thumbnail: card.thumbnail,
+          rarity: card.rarity,
           details: {
             create: {
               hp: Number(card.details.hp.replace(/\D/g, "")) || -1,
@@ -165,5 +202,6 @@ main()
     process.exit(1);
   })
   .finally(async () => {
+    console.timeEnd("Seeding started...");
     await prisma.$disconnect();
   });
