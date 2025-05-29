@@ -32,7 +32,7 @@ export const TradingArea = memo(({ cards }: { cards: Card[] }) => {
           (card) => card.id === draggedCard?.id,
         );
         if (previouslySelected) {
-          toast.getToasts().length === 0 &&
+          if (toast.getToasts().length === 0)
             toast.error("Card already selected", { richColors: true });
           return prev;
         } else return [...prev, draggedCard!].sort((a, b) => a.id - b.id);
@@ -61,6 +61,7 @@ export const TradingArea = memo(({ cards }: { cards: Card[] }) => {
       </div>
     );
   }, [draggedCard, wantedCards, givingCards]);
+  TradingArea.displayName = "TradingArea";
 
   return (
     <>
@@ -108,7 +109,7 @@ const TopDropZone = memo(
             (card) => card.id === draggedCard?.id,
           );
           if (previouslySelected) {
-            toast.getToasts().length === 0 &&
+            if (toast.getToasts().length === 0)
               toast.error("Card already selected", { richColors: true });
             return prev;
           } else return [...prev, draggedCard!].sort((a, b) => a.id - b.id);
@@ -157,6 +158,7 @@ const TopDropZone = memo(
     );
   },
 );
+TopDropZone.displayName = "TopDropZone";
 
 const SideDropZone = ({
   dragging,

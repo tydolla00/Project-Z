@@ -62,10 +62,10 @@ export default async function Page(props: {
         </p>
       </div>
       <Alert className="w-fit">
-        <AlertTitle>Can't find a card?</AlertTitle>
+        <AlertTitle>Can&apos;t find a card?</AlertTitle>
         <AlertDescription>
-          Some cards aren't available for trade. Please ensure you're spelling
-          the name correctly.
+          Some cards aren&apos;t available for trade. Please ensure you&apos;re
+          spelling the name correctly.
         </AlertDescription>
       </Alert>
       <Search />

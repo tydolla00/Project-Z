@@ -16,12 +16,8 @@ declare global {
 
 const connectionString = process.env.DATABASE_URL;
 
-const pool = new Pool({ connectionString }) as any;
-const adapter = new PrismaNeon(pool);
-const prisma =
-  // @ts-ignore
-  global.prisma ||
-  new PrismaClient({ adapter, log: ["warn", "error", "info"] });
+const adapter = new PrismaNeon({ connectionString });
+const prisma = new PrismaClient({ adapter });
 
 if (process.env.NODE_ENV === "development") global.prisma = prisma;
 
